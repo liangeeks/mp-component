@@ -17,10 +17,22 @@ class DemoComponent extends Component {
    **/
   data() {
     return {
-      name1: "value1",
-      name2: "value2",
+      name: "world",
       greeting: undefined
     };
+  }
+  
+  /**
+   * 事件处理
+   **/
+  methods() {
+    return {
+      bindInputChange(e) {
+        this.setData({
+          name: e.detail.value
+        });
+      }
+    };
   }
 
   initialize(options) {
@@ -35,9 +47,10 @@ class DemoComponent extends Component {
 > `DemoComponent.wxml` 组件模板文件
 ```xml
 <template name="DemoComponent">
-  <view>{{ name1 }}</view>
-  <view>{{ name2 }}</view>
-  <view>greeting: {{ greeting }}</view>
+  <view></view>
+  <input  bindinput="{{ bindInputChange }}" placeholder="输入同步到view中"/>
+  <view>greeting: {{ greeting }} {{ name }}</view>
+  
 </template>
 ```
 
